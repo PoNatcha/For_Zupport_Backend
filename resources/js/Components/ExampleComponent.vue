@@ -4,16 +4,36 @@
 
     <!-- ช่องค้นหา + ปุ่มค้นหา + ปุ่มรัศมี -->
     <div class="d-flex mb-4 flex-wrap gap-2 align-items-center">
-      <div class="input-group" style="flex-grow:1; min-width: 250px;">
+
+      <!-- กล่อง input + dropdown คำค้นหาเก่า -->
+      <div class="position-relative" style="flex-grow:1; min-width: 250px;">
         <input
-          v-model="locationInput"
+          v-model="tempSearch"
+          @focus="showSuggestions = true"
+          @blur="setTimeout(() => showSuggestions = false, 200)"
+          @keyup.enter="onEnter"
           type="text"
           class="form-control"
           placeholder="กรอกสถานที่ เช่น บางซื่อ"
-          @keyup.enter="searchRestaurants"
         />
-        <button class="btn btn-primary" @click="searchRestaurants">ค้นหา</button>
+
+        <ul
+          v-if="showSuggestions && searchHistory.length && tempSearch.trim() !== ''"
+          class="list-group position-absolute w-100 z-3"
+          style="top: 100%; max-height: 200px; overflow-y: auto;"
+        >
+          <li
+            v-for="item in searchHistory"
+            :key="item"
+            class="list-group-item list-group-item-action"
+            @mousedown.prevent="selectHistory(item)"
+          >
+            {{ item }}
+          </li>
+        </ul>
       </div>
+
+      <button class="btn btn-primary" @click="onEnter">ค้นหา</button>
 
       <div>
         <div class="btn-group" role="group" aria-label="รัศมีค้นหา">
@@ -35,7 +55,12 @@
     <transition name="toast-fade">
       <div v-if="showError" class="toast-popup">
         {{ errorMsg }}
-        <button class="btn-close btn-close-white" @click="hideError" aria-label="Close"></button>
+        <button
+          class="btn-close btn-close-white"
+          @click="hideError"
+          aria-label="Close"
+          style="background: transparent; border: none;"
+        ></button>
       </div>
     </transition>
 
@@ -53,11 +78,7 @@
       >
         <div class="card d-flex flex-column h-100">
           <div class="img-container">
-            <img
-              :src="place.photoUrl || defaultImg"
-              class="card-img-top"
-              alt="รูปร้านอาหาร"
-            />
+            <img :src="place.photoUrl || defaultImg" class="card-img-top" alt="รูปร้านอาหาร" />
           </div>
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">{{ place.name }}</h5>
@@ -98,6 +119,9 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
+const tempSearch = ref('')
+const showSuggestions = ref(false)
+const searchHistory = ref([])
 const restaurants = ref([])
 const errorMsg = ref('')
 const showError = ref(false)
@@ -112,16 +136,38 @@ const radii = [
   { label: '1 กิโล', value: 1000 },
 ]
 
-function showErrorToast(msg) {
-  errorMsg.value = msg
-  showError.value = true
-  setTimeout(() => {
-    showError.value = false
-  }, 4000)
+// โหลดประวัติจาก localStorage
+onMounted(() => {
+  const saved = localStorage.getItem('searchHistory')
+  if (saved) {
+    searchHistory.value = JSON.parse(saved)
+  }
+  loadRestaurants(locationInput.value, radius.value)
+})
+
+// ฟังก์ชันบันทึกประวัติคำค้น
+function saveSearchHistory(keyword) {
+  if (!searchHistory.value.includes(keyword)) {
+    searchHistory.value.unshift(keyword)
+    if (searchHistory.value.length > 10) searchHistory.value.pop()
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory.value))
+  }
 }
 
-function hideError() {
-  showError.value = false
+// ฟังก์ชันเลือกคำค้นเก่า
+function selectHistory(item) {
+  tempSearch.value = item
+  showSuggestions.value = false
+  onEnter()
+}
+
+// ฟังก์ชันค้นหา
+function onEnter() {
+  if (!tempSearch.value.trim()) return
+  locationInput.value = tempSearch.value.trim()
+  saveSearchHistory(locationInput.value)
+  loadRestaurants(locationInput.value, radius.value)
+  showSuggestions.value = false
 }
 
 async function loadRestaurants(location = 'บางซื่อ', searchRadius = 2000) {
@@ -143,18 +189,23 @@ async function loadRestaurants(location = 'บางซื่อ', searchRadius 
   }
 }
 
-function searchRestaurants() {
-  loadRestaurants(locationInput.value.trim() || 'บางซื่อ', radius.value)
+function showErrorToast(msg) {
+  errorMsg.value = msg
+  showError.value = true
+  setTimeout(() => {
+    showError.value = false
+  }, 4000)
+}
+
+function hideError() {
+  showError.value = false
 }
 
 function setRadius(value) {
   radius.value = value
-  searchRestaurants()
+  // ค้นหาตามรัศมีใหม่
+  onEnter()
 }
-
-onMounted(() => {
-  loadRestaurants(locationInput.value, radius.value)
-})
 </script>
 
 <style scoped>
@@ -166,6 +217,7 @@ onMounted(() => {
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
 }
+
 .img-container img {
   width: 100%;
   height: 100%;
@@ -177,7 +229,8 @@ onMounted(() => {
   position: fixed;
   top: 20px;
   right: 20px;
-  background-color: #dc3545; /* สีแดง bootstrap danger */
+  background-color: #dc3545;
+  /* สีแดง bootstrap danger */
   color: white;
   padding: 12px 20px;
   border-radius: 8px;
@@ -194,6 +247,8 @@ onMounted(() => {
   filter: invert(1);
   opacity: 0.8;
   cursor: pointer;
+  background: transparent;
+  border: none;
 }
 
 /* Animation fade in/out ลอยขึ้น */
@@ -201,11 +256,13 @@ onMounted(() => {
 .toast-fade-leave-active {
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
+
 .toast-fade-enter-from,
 .toast-fade-leave-to {
   opacity: 0;
   transform: translateY(-20px);
 }
+
 .toast-fade-enter-to,
 .toast-fade-leave-from {
   opacity: 1;
@@ -218,10 +275,9 @@ onMounted(() => {
     font-size: 0.85rem;
     padding: 0.375rem 0.75rem;
   }
+
   .img-container {
     height: 150px;
   }
-
-  
 }
 </style>
