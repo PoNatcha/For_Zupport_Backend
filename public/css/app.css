@@ -762,6 +762,9 @@ select {
 .top-0 {
   top: 0px;
 }
+.end-0 {
+  inset-inline-end: 0px;
+}
 .z-0 {
   z-index: 0;
 }
@@ -770,6 +773,12 @@ select {
 }
 .z-50 {
   z-index: 50;
+}
+.m-3 {
+  margin: 0.75rem;
+}
+.m-auto {
+  margin: auto;
 }
 .mx-6 {
   margin-left: 1.5rem;
@@ -782,6 +791,10 @@ select {
 .my-5 {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
+}
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 .-ml-px {
   margin-left: -1px;
@@ -845,6 +858,9 @@ select {
 }
 .mt-auto {
   margin-top: auto;
+}
+.me-2 {
+  margin-inline-end: 0.5rem;
 }
 .block {
   display: block;
@@ -1051,6 +1067,9 @@ select {
 }
 .border {
   border-width: 1px;
+}
+.border-0 {
+  border-width: 0px;
 }
 .border-b {
   border-bottom-width: 1px;
@@ -1401,6 +1420,13 @@ select {
 }
 .ring-opacity-5 {
   --tw-ring-opacity: 0.05;
+}
+.invert {
+  --tw-invert: invert(100%);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .transition {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
