@@ -24781,7 +24781,7 @@ var defaultImg = 'https://via.placeholder.com/400x300?text=No+Image';
     var errorMsg = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
     var showError = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
     var locationInput = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('บางซื่อ');
-    var radius = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(2000);
+    var radius = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(200);
     var radii = [{
       label: '100 ม.',
       value: 100

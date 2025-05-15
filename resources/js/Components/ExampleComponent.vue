@@ -102,7 +102,7 @@ const restaurants = ref([])
 const errorMsg = ref('')
 const showError = ref(false)
 const locationInput = ref('บางซื่อ')
-const radius = ref(2000)
+const radius = ref(200)
 const defaultImg = 'https://via.placeholder.com/400x300?text=No+Image'
 
 const radii = [
@@ -221,5 +221,7 @@ onMounted(() => {
   .img-container {
     height: 150px;
   }
+
+  
 }
 </style>
