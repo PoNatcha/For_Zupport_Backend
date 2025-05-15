@@ -24798,7 +24798,6 @@ var defaultImg = 'https://via.placeholder.com/400x300?text=No+Image';
     function showErrorToast(msg) {
       errorMsg.value = msg;
       showError.value = true;
-      // ซ่อนอัตโนมัติหลัง 4 วิ
       setTimeout(function () {
         showError.value = false;
       }, 4000);
@@ -24936,23 +24935,25 @@ var _hoisted_7 = {
   "class": "alert alert-warning my-3"
 };
 var _hoisted_8 = {
-  key: 1,
   "class": "row"
 };
 var _hoisted_9 = {
   "class": "card d-flex flex-column h-100"
 };
-var _hoisted_10 = ["src"];
-var _hoisted_11 = {
+var _hoisted_10 = {
+  "class": "img-container"
+};
+var _hoisted_11 = ["src"];
+var _hoisted_12 = {
   "class": "card-body d-flex flex-column"
 };
-var _hoisted_12 = {
+var _hoisted_13 = {
   "class": "card-title"
 };
-var _hoisted_13 = {
+var _hoisted_14 = {
   "class": "card-text"
 };
-var _hoisted_14 = ["href"];
+var _hoisted_15 = ["href"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
     "class": "text-center mb-4"
@@ -24987,15 +24988,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       })])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
     }),
     _: 1 /* STABLE */
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" แสดงข้อความกรณีไม่มีข้อมูล (ถ้าไม่มี error) "), !$setup.showError && $setup.restaurants.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, " ไม่พบข้อมูลร้านอาหาร ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" แสดงร้านอาหาร "), $setup.restaurants.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.restaurants, function (place) {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" แสดงข้อความกรณีไม่มีข้อมูล (ถ้าไม่มี error) "), !$setup.showError && $setup.restaurants.length === 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, " ไม่พบข้อมูลร้านอาหาร ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" แสดงร้านอาหาร "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.restaurants, function (place) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: place.place_id,
-      "class": "col-sm-6 col-md-3 mb-4"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+      "class": "col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: place.photoUrl || $setup.defaultImg,
-      "class": "card-img-top fixed-img-size",
+      "class": "card-img-top",
       alt: "รูปร้านอาหาร"
-    }, null, 8 /* PROPS */, _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(place.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(place.vicinity || place.formatted_address), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    }, null, 8 /* PROPS */, _hoisted_11)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(place.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(place.vicinity || place.formatted_address), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       href: 'https://www.google.com/maps/place/?q=place_id:' + place.place_id,
       target: "_blank",
       "class": "btn btn-outline-secondary d-inline-flex align-items-center gap-2 mt-auto",
@@ -25015,8 +25016,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       d: "M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"
     })], -1 /* HOISTED */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
       "class": "d-none d-md-inline"
-    }, "แผนที่", -1 /* HOISTED */)])), 8 /* PROPS */, _hoisted_14)])])]);
-  }), 128 /* KEYED_FRAGMENT */))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+    }, "แผนที่", -1 /* HOISTED */)])), 8 /* PROPS */, _hoisted_15)])])]);
+  }), 128 /* KEYED_FRAGMENT */))])]);
 }
 
 /***/ }),
@@ -27069,7 +27070,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.fixed-img-size[data-v-e6f5c904] {\r\n  width: 100%;\r\n  height: 200px;\r\n  -o-object-fit: cover;\r\n     object-fit: cover;\n}\r\n\r\n/* Toast popup */\n.toast-popup[data-v-e6f5c904] {\r\n  position: fixed;\r\n  top: 20px;\r\n  right: 20px;\r\n  background-color: #dc3545; /* สีแดง bootstrap danger */\r\n  color: white;\r\n  padding: 12px 20px;\r\n  border-radius: 8px;\r\n  box-shadow: 0 4px 12px rgb(0 0 0 / 0.2);\r\n  z-index: 9999;\r\n  display: flex;\r\n  align-items: center;\r\n  gap: 12px;\r\n  font-weight: 600;\n}\r\n\r\n/* ปุ่มปิด Toast */\n.toast-popup .btn-close[data-v-e6f5c904] {\r\n  filter: invert(1);\r\n  opacity: 0.8;\r\n  cursor: pointer;\n}\r\n\r\n/* Animation fade in/out ลอยขึ้น */\n.toast-fade-enter-active[data-v-e6f5c904],\r\n.toast-fade-leave-active[data-v-e6f5c904] {\r\n  transition: opacity 0.5s ease, transform 0.5s ease;\n}\n.toast-fade-enter-from[data-v-e6f5c904],\r\n.toast-fade-leave-to[data-v-e6f5c904] {\r\n  opacity: 0;\r\n  transform: translateY(-20px);\n}\n.toast-fade-enter-to[data-v-e6f5c904],\r\n.toast-fade-leave-from[data-v-e6f5c904] {\r\n  opacity: 1;\r\n  transform: translateY(0);\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\r\n/* กำหนดขนาดรูปให้เท่ากันและไม่บิดเบี้ยว */\n.img-container[data-v-e6f5c904] {\r\n  width: 100%;\r\n  height: 200px;\r\n  overflow: hidden;\r\n  border-top-left-radius: 0.25rem;\r\n  border-top-right-radius: 0.25rem;\n}\n.img-container img[data-v-e6f5c904] {\r\n  width: 100%;\r\n  height: 100%;\r\n  -o-object-fit: cover;\r\n     object-fit: cover;\n}\r\n\r\n/* Toast popup */\n.toast-popup[data-v-e6f5c904] {\r\n  position: fixed;\r\n  top: 20px;\r\n  right: 20px;\r\n  background-color: #dc3545; /* สีแดง bootstrap danger */\r\n  color: white;\r\n  padding: 12px 20px;\r\n  border-radius: 8px;\r\n  box-shadow: 0 4px 12px rgb(0 0 0 / 0.2);\r\n  z-index: 9999;\r\n  display: flex;\r\n  align-items: center;\r\n  gap: 12px;\r\n  font-weight: 600;\n}\r\n\r\n/* ปุ่มปิด Toast */\n.toast-popup .btn-close[data-v-e6f5c904] {\r\n  filter: invert(1);\r\n  opacity: 0.8;\r\n  cursor: pointer;\n}\r\n\r\n/* Animation fade in/out ลอยขึ้น */\n.toast-fade-enter-active[data-v-e6f5c904],\r\n.toast-fade-leave-active[data-v-e6f5c904] {\r\n  transition: opacity 0.5s ease, transform 0.5s ease;\n}\n.toast-fade-enter-from[data-v-e6f5c904],\r\n.toast-fade-leave-to[data-v-e6f5c904] {\r\n  opacity: 0;\r\n  transform: translateY(-20px);\n}\n.toast-fade-enter-to[data-v-e6f5c904],\r\n.toast-fade-leave-from[data-v-e6f5c904] {\r\n  opacity: 1;\r\n  transform: translateY(0);\n}\r\n\r\n/* ปรับขนาดปุ่มและรูปภาพในมือถือ */\n@media (max-width: 576px) {\n.btn[data-v-e6f5c904] {\r\n    font-size: 0.85rem;\r\n    padding: 0.375rem 0.75rem;\n}\n.img-container[data-v-e6f5c904] {\r\n    height: 150px;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

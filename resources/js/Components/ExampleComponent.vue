@@ -45,18 +45,20 @@
     </div>
 
     <!-- แสดงร้านอาหาร -->
-    <div class="row" v-if="restaurants.length > 0">
+    <div class="row">
       <div
         v-for="place in restaurants"
         :key="place.place_id"
-        class="col-sm-6 col-md-3 mb-4"
+        class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
       >
         <div class="card d-flex flex-column h-100">
-          <img
-            :src="place.photoUrl || defaultImg"
-            class="card-img-top fixed-img-size"
-            alt="รูปร้านอาหาร"
-          />
+          <div class="img-container">
+            <img
+              :src="place.photoUrl || defaultImg"
+              class="card-img-top"
+              alt="รูปร้านอาหาร"
+            />
+          </div>
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">{{ place.name }}</h5>
             <p class="card-text">{{ place.vicinity || place.formatted_address }}</p>
@@ -113,7 +115,6 @@ const radii = [
 function showErrorToast(msg) {
   errorMsg.value = msg
   showError.value = true
-  // ซ่อนอัตโนมัติหลัง 4 วิ
   setTimeout(() => {
     showError.value = false
   }, 4000)
@@ -157,9 +158,17 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.fixed-img-size {
+/* กำหนดขนาดรูปให้เท่ากันและไม่บิดเบี้ยว */
+.img-container {
   width: 100%;
   height: 200px;
+  overflow: hidden;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+.img-container img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -201,5 +210,16 @@ onMounted(() => {
 .toast-fade-leave-from {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ปรับขนาดปุ่มและรูปภาพในมือถือ */
+@media (max-width: 576px) {
+  .btn {
+    font-size: 0.85rem;
+    padding: 0.375rem 0.75rem;
+  }
+  .img-container {
+    height: 150px;
+  }
 }
 </style>
