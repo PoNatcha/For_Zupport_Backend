@@ -1,6 +1,7 @@
 <template>
-  <h1>eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</h1>
+  <button class="btn btn-primary">ปุ่มสวย</button>
 </template>
+
 
 <script>
 export default {
